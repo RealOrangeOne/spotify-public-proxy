@@ -3,6 +3,7 @@ from sanic_useragent import SanicUserAgent
 from sanic import response
 import views.playlist
 from match import PLAYLIST_ID_MATCH
+import os
 
 
 def redirect_to_repo(request):
@@ -17,4 +18,4 @@ app.add_route(redirect_to_repo, '/')
 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host="0.0.0.0", port=os.environ.get("PORT", 5000))
