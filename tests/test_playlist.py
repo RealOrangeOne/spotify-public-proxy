@@ -42,5 +42,3 @@ class PlaylistTestCase(TestCase):
         for artist in response.json['tracks'][0]['album']['artists']:
             self.assertIn(artist, response.json['tracks'][0]['artists'])
             self.assertRegex(artist['uri'], match.ARTIST_ID_MATCH)
-
-

@@ -12,8 +12,11 @@ jobs:
                 command: sudo pip install -r requirements.txt
             - run:
                 name: Install test dependencies
-                command: sudo pip install nose2
+                command: sudo pip install nose2 flake8
             - run:
                 name: Run Tests
                 command: nose2
+            - run:
+                name: Lint
+                command: flake8 src --ignore=E128,E501 && flake8 tests --ignore=E128,E501
 
