@@ -17,7 +17,6 @@ def serialize_user(user_data):
         'external_urls',
         'type',
         'href',
-        'uri'
     ])
     fields['url'] = get_external_url(user_data)
     return fields
@@ -26,7 +25,6 @@ def serialize_user(user_data):
 def serialize_album(album_data):
     fields = get_fields(album_data, [
         'album_type',
-        'type',
         'uri',
         'images'
     ])
