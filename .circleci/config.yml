@@ -9,10 +9,10 @@ jobs:
             - checkout
             - run:
                 name: Install Dependencies
-                command: pip install -r requirements.txt
+                command: sudo pip install -r requirements.txt
             - run:
                 name: Install test dependencies
-                command: pip install nose2
+                command: sudo pip install nose2
             - run:
                 name: Run Tests
                 command: nose2
