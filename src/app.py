@@ -1,12 +1,9 @@
-from sanic import Sanic
-from sanic_useragent import SanicUserAgent
-from sanic import response
+from sanic import Sanic, response
 from spotify import get_access_token, API_URL
 import os
 import requests
 
 app = Sanic(__name__)
-SanicUserAgent.init_app(app)
 
 
 @app.get('/')
