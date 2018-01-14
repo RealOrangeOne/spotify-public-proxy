@@ -17,8 +17,11 @@ def redirect_to_repo(request):
 @app.get('/<url:path>', strict_slashes=False)
 async def proxy_to_spotify(request, url):
     spotify_response = requests.get(os.path.join(API_URL, url), headers={
-        'Authorization': 'Bearer {}'.format(get_access_token())
+        'Authorization': 'Bearer {}'.format(get_access_token()),
+        'Accept': 'application/json'
     })
+    if spotify_response.status_code != 200:
+        return response.text(spotify_response.text, status=spotify_response.status_code)
     return response.json(spotify_response.json(), status=spotify_response.status_code)
 
 if __name__ == '__main__':
