@@ -5,10 +5,25 @@
 Proxy for reading publicly-accessible data from Spotify, without distributing tokens.
 
 ## Supported APIs
-- Querying playlist data
+Due to the nature of the APIs, only `GET` calls are supported.
 
 ## How it works
-On an incoming request, the required calls to the `spotipy` module are called, and returned to the client. As the `spotipy` module handles authentication, the client doesn't need to send them.
+On an incoming request, we request an access token from spotify, and append it to the request, before sending it on to spotifys standard API.
+ 
+## Usage
+### Host it yourself
+So I don't have to handle hosting application costs of this, you will need to host an instance of this yourselves.
 
-## Differences from Spotify
-As an MVP, this is incompatible with Spotify's API. Future updates will enable this to work as a simple proxy through.
+### Create a spotify application to get required tokens
+Create an application at https://developer.spotify.com/my-applications/, and create a client ID and secret
+### Setup tokens
+```bash
+export SPOTIFY_CLIENT_ID="..."
+export SPOTIFY_CLIENT_SECRET="..."
+```
+### Start the server
+    
+    python3 ./src/app.py
+
+### Send a request
+Simply change the `https://api.spotify.com` with your instance URL. eg `https://your.spotify.proxy.com/v1/users/{user_id}/playlists/{playlist_id}`
