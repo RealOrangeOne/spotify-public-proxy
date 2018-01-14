@@ -1,10 +1,12 @@
 from src.app import app
 from unittest import TestCase
 
+
 def build_playlist(user, id):
     return "/v1/users/{}/playlists/{}".format(
         user, id
     )
+
 
 class PlaylistTestCase(TestCase):
     def test_valid_playlist(self):
