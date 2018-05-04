@@ -9,6 +9,8 @@ WORKDIR /app
 
 RUN pip install -r requirements.txt
 
+RUN apk del --no-cache gcc libc-dev make
+
 CMD python3 /app/src/app.py
 
 EXPOSE 5000
