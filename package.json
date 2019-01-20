@@ -20,5 +20,9 @@
     "@babel/preset-typescript": "^7.1.0",
     "@types/aws-lambda": "^8.10.17",
     "netlify-lambda": "^1.2.0"
+  },
+  "dependencies": {
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.5"
   }
 }
