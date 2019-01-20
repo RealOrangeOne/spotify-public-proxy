@@ -9,7 +9,7 @@ Due to the nature of the APIs, only `GET` calls are supported.
 
 ## How it works
 On an incoming request, we request an access token from spotify, and append it to the request, before sending it on to spotifys standard API.
- 
+
 ## Usage
 ### Host it yourself
 So I don't have to handle hosting application costs of this, you will need to host an instance of this yourselves.
@@ -22,8 +22,8 @@ export SPOTIFY_CLIENT_ID="..."
 export SPOTIFY_CLIENT_SECRET="..."
 ```
 ### Start the server
-    
-    python3 ./src/app.py
+
+    npm start
 
 ### Send a request
 Simply change the `https://api.spotify.com` with your instance URL. eg `https://your.spotify.proxy.com/v1/users/{user_id}/playlists/{playlist_id}`

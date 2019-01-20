@@ -1,0 +1,24 @@
+{
+  "name": "spotify-public-proxy",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "netlify-lambda build src/",
+    "start": "netlify-lambda serve src/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RealOrangeOne/spotify-public-proxy.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RealOrangeOne/spotify-public-proxy/issues"
+  },
+  "homepage": "https://github.com/RealOrangeOne/spotify-public-proxy#readme",
+  "devDependencies": {
+    "@babel/preset-typescript": "^7.1.0",
+    "@types/aws-lambda": "^8.10.17",
+    "netlify-lambda": "^1.2.0"
+  }
+}
