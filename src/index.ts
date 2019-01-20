@@ -24,18 +24,24 @@ async function getAccessToken() {
   return JSON.parse(data).access_token;
 }
 
+function getPath(event: APIGatewayProxyEvent) {
+  return event.path.replace(/^\/\.netlify\/functions/, '').replace(/^\/index/, '');
+}
+
 exports.handler = async (
   event: APIGatewayProxyEvent,
   context: any
 ) => {
+  if (event.httpMethod != 'GET') {
+    return { statusCode: 405}
+  }
   const access_token = await getAccessToken();
+  const path = getPath(event);
   return {
     statusCode: 200,
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({
-      access_token
-    })
+    body: JSON.stringify({ path })
   };
 }
