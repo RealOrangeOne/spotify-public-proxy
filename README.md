@@ -1,6 +1,6 @@
 # Spotify Public Proxy
 
-[![CircleCI](https://circleci.com/gh/RealOrangeOne/spotify-public-proxy.svg?style=svg)](https://circleci.com/gh/RealOrangeOne/spotify-public-proxy)
+![CI](https://github.com/RealOrangeOne/website/workflows/CI/badge.svg)
 
 Proxy for reading publicly-accessible data from Spotify, without distributing tokens.
 
@@ -9,7 +9,7 @@ Due to the nature of the APIs, only `GET` calls are supported.
 
 ## How it works
 On an incoming request, we request an access token from spotify, and append it to the request, before sending it on to spotifys standard API.
- 
+
 ## Usage
 ### Host it yourself
 So I don't have to handle hosting application costs of this, you will need to host an instance of this yourselves.
@@ -22,7 +22,7 @@ export SPOTIFY_CLIENT_ID="..."
 export SPOTIFY_CLIENT_SECRET="..."
 ```
 ### Start the server
-    
+
     python3 ./src/app.py
 
 ### Send a request
