@@ -1,0 +1,5 @@
+nose2
+flake8
+aiohttp
+
+-r requirements.txt

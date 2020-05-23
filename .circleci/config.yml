@@ -9,10 +9,7 @@ jobs:
             - checkout
             - run:
                 name: Install Dependencies
-                command: sudo pip install -r requirements.txt
-            - run:
-                name: Install test dependencies
-                command: sudo pip install nose2 flake8 aiohttp
+                command: pip install -r dev-requirements.txt
             - run:
                 name: Run Tests
                 command: nose2
