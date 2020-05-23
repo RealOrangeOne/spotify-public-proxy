@@ -29,6 +29,4 @@ jobs:
     - name: Install dependencies
       run: pip install -r dev-requirements.txt
     - name: Run tests
-      run: nose2
-    - name: Lint
-      run: flake8 src --ignore=E128,E501 && flake8 tests --ignore=E128,E501
+      run: ./scripts/test.sh
