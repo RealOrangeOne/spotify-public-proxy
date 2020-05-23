@@ -1,5 +1,6 @@
 from src.app import app
 from unittest import TestCase
+from starlette.testclient import TestClient
 
 
 def build_playlist(user, id):
@@ -9,16 +10,18 @@ def build_playlist(user, id):
 
 
 class PlaylistTestCase(TestCase):
+    def setUp(self):
+        self.client = TestClient(app)
+
     def test_valid_playlist(self):
-        request, response = app.test_client.get(build_playlist("spotify", "59ZbFPES4DQwEjBpWHzrtC"))
-        self.assertEqual(response.status, 200)
+        response = self.client.get(build_playlist("theorangeone97", "4SLjpGGoOoiCDhc9sgNx8w"))
+        self.assertEqual(response.status_code, 200)
 
     def test_invalid_playlist(self):
-        request, response = app.test_client.get(build_playlist("spotifyyyyy", "59ZbFPES4DQwEjBpWHzrtC"))
-        self.assertEqual(response.status, 404)
-        self.assertIsNone(response.json)
+        response = self.client.get(build_playlist("spotifyyyyy", "59ZbFPES4DQwEjBpWHzrtC"))
+        self.assertEqual(response.status_code, 404)
 
     def test_passes_querystring(self):
-        request, response = app.test_client.get(build_playlist("spotify", "59ZbFPES4DQwEjBpWHzrtC") + '?limit=10')
-        self.assertEqual(response.status, 200)
-        self.assertEqual(response.json['tracks']['limit'], 10)
+        response = self.client.get(build_playlist("theorangeone97", "4SLjpGGoOoiCDhc9sgNx8w") + '?limit=10')
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()['tracks']['limit'], 10)

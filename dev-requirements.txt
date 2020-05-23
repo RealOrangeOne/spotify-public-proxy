@@ -1,5 +1,4 @@
-nose2
-flake8
-aiohttp
+nose2==0.9.2
+flake8==3.8.2
 
 -r requirements.txt
