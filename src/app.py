@@ -2,13 +2,18 @@ import os
 from urllib.parse import urljoin
 
 import httpx
+import sentry_sdk
 import uvicorn
+from sentry_sdk.integrations.asgi import SentryAsgiMiddleware
 from starlette.applications import Starlette
 from starlette.requests import Request
 from starlette.responses import JSONResponse, RedirectResponse, Response
 from starlette.routing import Route
 
 from spotify import API_URL, get_access_token
+
+if sentry_dsn := os.environ.get("SENTRY_DSN"):
+    sentry_sdk.init(sentry_dsn, traces_sample_rate=1.0)
 
 
 async def redirect_to_repo(request: Request) -> Response:
@@ -44,4 +49,9 @@ app = Starlette(
 )
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=os.environ.get("PORT", 5000), workers=1)
+    uvicorn.run(
+        SentryAsgiMiddleware(app),
+        host="0.0.0.0",
+        port=os.environ.get("PORT", 5000),
+        workers=1,
+    )
