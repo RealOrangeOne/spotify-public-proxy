@@ -5,12 +5,11 @@ import httpx
 import sentry_sdk
 import uvicorn
 from sentry_sdk.integrations.asgi import SentryAsgiMiddleware
+from spotify import API_URL, get_access_token
 from starlette.applications import Starlette
 from starlette.requests import Request
 from starlette.responses import JSONResponse, RedirectResponse, Response
 from starlette.routing import Route
-
-from spotify import API_URL, get_access_token
 
 if sentry_dsn := os.environ.get("SENTRY_DSN"):
     sentry_sdk.init(sentry_dsn, traces_sample_rate=1.0)

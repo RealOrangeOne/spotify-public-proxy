@@ -6,8 +6,6 @@ set -ex
 
 black --check src tests
 
-flake8 src tests
-
-isort -rc -c src tests
+ruff check src tests
 
 mypy src tests

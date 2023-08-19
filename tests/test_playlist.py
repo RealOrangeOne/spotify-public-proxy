@@ -5,8 +5,8 @@ from starlette.testclient import TestClient
 from src.app import app
 
 
-def build_playlist(user: str, id: str) -> str:
-    return "/v1/users/{}/playlists/{}".format(user, id)
+def build_playlist(user: str, playlist_id: str) -> str:
+    return "/v1/users/{}/playlists/{}".format(user, playlist_id)
 
 
 class PlaylistTestCase(TestCase):
