@@ -44,7 +44,7 @@ async def proxy_to_spotify(request: Request) -> Response:
 app = Starlette(
     routes=[
         Route("/", redirect_to_repo, methods=["GET"]),
-        Route("/(.*)", proxy_to_spotify, methods=["GET"]),
+        Route("/{rest_of_path:path}", proxy_to_spotify, methods=["GET"]),
     ]
 )
 
@@ -52,6 +52,6 @@ if __name__ == "__main__":
     uvicorn.run(
         SentryAsgiMiddleware(app),
         host="0.0.0.0",
-        port=os.environ.get("PORT", 5000),
+        port=int(os.environ.get("PORT", 5000)),
         workers=1,
     )
