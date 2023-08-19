@@ -8,15 +8,15 @@ from sentry_sdk.integrations.asgi import SentryAsgiMiddleware
 from spotify import API_URL, get_access_token
 from starlette.applications import Starlette
 from starlette.requests import Request
-from starlette.responses import JSONResponse, RedirectResponse, Response
+from starlette.responses import JSONResponse, Response
 from starlette.routing import Route
 
 if sentry_dsn := os.environ.get("SENTRY_DSN"):
     sentry_sdk.init(sentry_dsn, traces_sample_rate=1.0)
 
 
-async def redirect_to_repo(request: Request) -> Response:
-    return RedirectResponse("https://github.com/realorangeone/spotify-public-proxy")
+async def healthcheck(request: Request) -> Response:
+    return Response(content="OK")
 
 
 async def proxy_to_spotify(request: Request) -> Response:
@@ -42,7 +42,7 @@ async def proxy_to_spotify(request: Request) -> Response:
 
 app = Starlette(
     routes=[
-        Route("/", redirect_to_repo, methods=["GET"]),
+        Route("/.health/", healthcheck, methods=["GET"]),
         Route("/{rest_of_path:path}", proxy_to_spotify, methods=["GET"]),
     ]
 )
