@@ -9,3 +9,5 @@ black --check src tests
 ruff check src tests
 
 mypy src tests
+
+nose2
