@@ -1,11 +1,12 @@
 FROM python:3.11-slim
 
-COPY ./src /app/src
-COPY ./requirements.txt /app
+COPY ./requirements.txt /app/
 
 WORKDIR /app
 
-RUN pip install -r requirements.txt
+RUN pip install --no-cache -r requirements.txt
+
+COPY ./src /app/src
 
 CMD python3 /app/src/app.py
 
