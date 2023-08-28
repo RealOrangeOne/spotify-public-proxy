@@ -12,7 +12,7 @@ from starlette.responses import JSONResponse, Response
 from starlette.routing import Route
 
 if sentry_dsn := os.environ.get("SENTRY_DSN"):
-    sentry_sdk.init(sentry_dsn, traces_sample_rate=1.0)
+    sentry_sdk.init(sentry_dsn)
 
 
 async def healthcheck(request: Request) -> Response:
